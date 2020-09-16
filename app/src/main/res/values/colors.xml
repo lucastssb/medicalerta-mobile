@@ -3,4 +3,19 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="layoutAddToolbar">#2F7C9A</color>
+    <color name="layoutAddBackgroud">#13B1CE</color>
+
+    <color name="layoutListarToolbar">#1A5425</color>
+    <color name="layoutListarBackgroud">#37B30E</color>
+
+    <color name="layoutAlarmeToolbar">#7E006C</color>
+    <color name="layoutAlarmeBackgroud">#FF00DB</color>
+
+    <color name="btnGreen">#37B30E</color>
+    <color name="btnRed">#FF0005</color>
+
+
+
 </resources>
