@@ -13,6 +13,9 @@
     <color name="layoutAlarmeToolbar">#7E006C</color>
     <color name="layoutAlarmeBackgroud">#FF00DB</color>
 
+    <color name="layoutHistoricoToolbar">#7C1011</color>
+    <color name="layoutHistoricoBackgroud">#FC2428</color>
+
     <color name="btnGreen">#37B30E</color>
     <color name="btnRed">#FF0005</color>
 
