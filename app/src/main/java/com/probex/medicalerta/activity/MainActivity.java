@@ -20,4 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public void openAlarmListActivity(View view) {
         startActivity(new Intent(this, AlarmListActivity.class));
     }
+    public void openHistoryListActivity(View view) {
+        startActivity(new Intent(this, HistoryActivity.class));
+    }
 }

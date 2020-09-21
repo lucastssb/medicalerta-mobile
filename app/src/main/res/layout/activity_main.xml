@@ -130,6 +130,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@color/btnRed"
+        android:onClick="openHistoryListActivity"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="parent"
