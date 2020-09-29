@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.probex.medicalerta.R;
+import com.probex.medicalerta.services.AlarmService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        startService(new Intent(getBaseContext(), AlarmService.class));
     }
 
     public void openAlarmListActivity(View view) {
