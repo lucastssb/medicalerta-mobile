@@ -93,6 +93,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@color/layoutAddBackgroud"
+        android:onClick="openAddMedication1"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline"

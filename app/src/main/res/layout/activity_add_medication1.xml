@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layoutAddBackgroud"
+    android:onClick="click"
+    tools:context=".activity.AddMedication1">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/material_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbat_new_medication"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/layoutAddToolbar"
+            app:title=""
+            app:titleTextColor="@android:color/white"
+            tools:ignore="MissingConstraints">
+
+
+            <ImageButton
+                android:id="@+id/image_voltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="btnVoltar"
+                android:background="@color/layoutAddToolbar"
+                android:src="@drawable/arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Adicionar Medicamento"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <AutoCompleteTextView
+        android:id="@+id/autoTextView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/autocomplete_background"
+        android:hint="Digite o nome da Medicamento"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/material_appbar"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/green_btn"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/buttongreen"
+        android:text="Continuar"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/autoTextView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
