@@ -39,7 +39,7 @@ public class AddMedication1 extends AppCompatActivity {
         });
     }
 
-    //Fechar teclado
+    //Close keyboard
     public void click(View v) {
         String newText = autoTextView.getText().toString();
         //textViewResult.setText(newText);
