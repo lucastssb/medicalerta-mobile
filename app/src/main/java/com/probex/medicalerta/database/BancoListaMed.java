@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.probex.medicalerta.activity.Medicamento;
+import com.probex.medicalerta.adapter.Medicamento;
 
 import java.util.ArrayList;
 import java.util.List;

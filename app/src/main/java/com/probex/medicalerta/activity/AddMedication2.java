@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.probex.medicalerta.R;
+import com.probex.medicalerta.adapter.Medicamento;
 import com.probex.medicalerta.database.BancoListaMed;
 
 import java.io.File;

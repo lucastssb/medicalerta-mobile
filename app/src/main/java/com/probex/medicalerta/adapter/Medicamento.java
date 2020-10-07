@@ -1,4 +1,4 @@
-package com.probex.medicalerta.activity;
+package com.probex.medicalerta.adapter;
 
 public class Medicamento {
 
