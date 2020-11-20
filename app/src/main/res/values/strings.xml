@@ -2,4 +2,18 @@
     <string name="app_name">Medicalerta</string>
     <string name="channel_name">test</string>
     <string name="channel_description">channelTest</string>
+
+    <string-array name="dias_de_tratamento">
+        <item>Todo Dia</item>
+        <item>Tempo Indeterminado</item>
+    </string-array>
+
+    <string-array name="vezes_por_dia">
+        <item>Uma vez ao dia</item>
+        <item>4 vezes ao dia</item>
+        <item>6 vezes ao dia</item>
+        <item>8 vezes ao dia</item>
+        <item>12 vezes ao dia</item>
+    </string-array>
+
 </resources>
