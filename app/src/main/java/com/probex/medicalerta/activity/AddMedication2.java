@@ -2,6 +2,8 @@ package com.probex.medicalerta.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -168,14 +170,16 @@ public class AddMedication2 extends AppCompatActivity {
             }
 
             public void click(){
-                //alert("teste");
                 Intent intent = new Intent(AddMedication2.this, AddMedication3.class);
                 intent.putExtra("key", idV.toString());
-                startActivity(intent);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(),R.anim.mover_esquerda ,R.anim.fade_out );
+                ActivityCompat.startActivity(AddMedication2.this, intent, activityOptionsCompat.toBundle());
             }
-
-
         }
-
     }
+    public void voltar(View view) {
+        finish();
+        overridePendingTransition(0, R.anim.mover_direita);
+    }
+
 }

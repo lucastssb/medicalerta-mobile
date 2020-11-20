@@ -60,7 +60,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
         QUERY_COLUNA = " CREATE TABLE " + TABELA_ALARME + " ( "
                 + COLUNA_ID_ALARME + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUNA_ID_MED + " INTEGER REFERENCES tb_medicamento (id_med) ON DELETE CASCADE ON UPDATE CASCADE,"
+                + COLUNA_ID_MEDE + " INTEGER REFERENCES tb_medicamento (id_med) ON DELETE CASCADE ON UPDATE CASCADE,"
                 + COLUNA_DATA_INICIAL + " INTEGER,"
                 + COLUNA_DATA_FINAL + " INTEGER,"
                 + COLUNA_ULTIMO_ALARME + " INTEGER,"
@@ -79,6 +79,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
+        values.put(COLUNA_ID_MED, medicamento.getId_med());
         values.put(COLUNA_INDICACAO, medicamento.getIndicacao());
         values.put(COLUNA_SUBSTANCIA, medicamento.getSubstancia());
         values.put(COLUNA_PRODUTO, medicamento.getProduto());
@@ -98,7 +99,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    Medicamento selecionarMedicamento(int id_med) {
+    public Medicamento selecionarMedicamento(int id_med) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_MEDICAMENTO, new String[]{COLUNA_ID_MED, COLUNA_INDICACAO,
@@ -166,7 +167,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(COLUNA_ID_MED, alarme.getId_med());
+        values.put(COLUNA_ID_MEDE, alarme.getId_med());
         values.put(COLUNA_DATA_INICIAL, alarme.getData_inicial());
         values.put(COLUNA_DATA_FINAL, alarme.getData_final());
         values.put(COLUNA_ULTIMO_ALARME, alarme.getUltimo_alarme());
@@ -205,7 +206,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(COLUNA_ID_MED, alarme.getId_med());
+        values.put(COLUNA_ID_MEDE, alarme.getId_med());
         values.put(COLUNA_DATA_INICIAL, alarme.getData_inicial());
         values.put(COLUNA_DATA_FINAL, alarme.getData_final());
         values.put(COLUNA_ULTIMO_ALARME, alarme.getUltimo_alarme());

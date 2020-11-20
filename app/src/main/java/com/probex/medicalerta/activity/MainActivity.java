@@ -1,6 +1,8 @@
 package com.probex.medicalerta.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openAddMedication1(View view) {
-        startActivity(new Intent(this, AddMedication1.class));
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(),R.anim.mover_esquerda ,R.anim.fade_out );
+        ActivityCompat.startActivity(MainActivity.this, new Intent(MainActivity.this, AddMedication1.class), activityOptionsCompat.toBundle());
     }
 
     public void openAlarmListActivity(View view) {

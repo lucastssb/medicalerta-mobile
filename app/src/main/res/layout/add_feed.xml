@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginStart="15dp"
     android:layout_marginLeft="15dp"
     android:layout_marginTop="10dp"
@@ -41,8 +41,12 @@
         app:layout_constraintTop_toBottomOf="@id/produto_text" />
 
     <ImageView
+        android:id="@+id/linha_produto"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,14 +59,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:text="Substância:"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/produto" />
+        app:layout_constraintTop_toTopOf="@id/linha_produto" />
 
     <TextView
         android:id="@+id/substancia"
@@ -80,8 +84,12 @@
         app:layout_constraintTop_toBottomOf="@id/substancia_text" />
 
     <ImageView
+        android:id="@+id/linha_substancia"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,14 +101,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:text="Concentração:"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/substancia" />
+        app:layout_constraintTop_toBottomOf="@id/linha_substancia" />
 
     <TextView
         android:id="@+id/concentracao"
@@ -118,8 +126,12 @@
         app:layout_constraintTop_toBottomOf="@id/concentracao_text" />
 
     <ImageView
+        android:id="@+id/linha_concentracao"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,14 +143,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:text="Subclasse:"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/concentracao" />
+        app:layout_constraintTop_toBottomOf="@id/linha_concentracao" />
 
     <TextView
         android:id="@+id/subclasse"
@@ -157,8 +169,12 @@
         app:layout_constraintTop_toBottomOf="@id/subclasse_text" />
 
     <ImageView
+        android:id="@+id/linha_subclasse"
         android:layout_width="0dp"
         android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

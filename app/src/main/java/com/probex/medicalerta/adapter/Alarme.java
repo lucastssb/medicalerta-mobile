@@ -1,6 +1,9 @@
 package com.probex.medicalerta.adapter;
 
-public class Alarme {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Alarme implements Parcelable {
 
     private int id_alarme;
     private int id_med;
@@ -29,6 +32,27 @@ public class Alarme {
         this.ultimo_alarme = ultimo_alarme;
         this.intervalo = intervalo;
     }
+
+    protected Alarme(Parcel in) {
+        id_alarme = in.readInt();
+        id_med = in.readInt();
+        data_inicial = in.readLong();
+        data_final = in.readLong();
+        ultimo_alarme = in.readLong();
+        intervalo = in.readInt();
+    }
+
+    public static final Creator<Alarme> CREATOR = new Creator<Alarme>() {
+        @Override
+        public Alarme createFromParcel(Parcel in) {
+            return new Alarme(in);
+        }
+
+        @Override
+        public Alarme[] newArray(int size) {
+            return new Alarme[size];
+        }
+    };
 
     public int getId_alarme() {
         return id_alarme;
@@ -78,4 +102,18 @@ public class Alarme {
         this.intervalo = intervalo;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id_alarme);
+        parcel.writeInt(id_med);
+        parcel.writeLong(data_inicial);
+        parcel.writeLong(data_final);
+        parcel.writeLong(ultimo_alarme);
+        parcel.writeInt(intervalo);
+    }
 }

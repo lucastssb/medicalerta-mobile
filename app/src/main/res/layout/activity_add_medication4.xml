@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layoutAddBackgroud"
+    tools:context=".activity.AddMedication4">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/layoutAddToolbar"
+            app:title=""
+            app:titleTextColor="@android:color/white">
+
+            <ImageView
+                android:id="@+id/image_voltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:onClick="voltar"
+                android:src="@drawable/arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Adicionar Medicamento"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constLay2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/add_feed_rounded"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBar">
+
+
+        <ImageView
+            android:id="@+id/ic_medicamento"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/medicamento"
+            app:layout_constraintBottom_toTopOf="@+id/linha_produto"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/produto_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Produto:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_medicamento"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/produto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="NEOPIRIDIN"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_medicamento"
+            app:layout_constraintTop_toBottomOf="@id/produto_text" />
+
+        <ImageView
+            android:id="@+id/linha_produto"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/produto" />
+
+        <ImageView
+            android:id="@+id/ic_medicamento2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/medicamento2"
+            app:layout_constraintBottom_toTopOf="@+id/linha_concentracao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linha_produto" />
+
+
+        <TextView
+            android:id="@+id/concentracao_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Concentração:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_medicamento2"
+            app:layout_constraintTop_toBottomOf="@id/linha_produto" />
+
+        <TextView
+            android:id="@+id/concentracao"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="1,466 MG + 10 MG PAS DURA CT ENV AL X 12"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/linha_concentracao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_medicamento2"
+            app:layout_constraintTop_toBottomOf="@id/concentracao_text" />
+
+        <ImageView
+            android:id="@+id/linha_concentracao"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/concentracao" />
+
+        <ImageView
+            android:id="@+id/ic_relogio"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/relogio"
+            app:layout_constraintBottom_toTopOf="@+id/linha_intervalo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linha_concentracao" />
+
+        <TextView
+            android:id="@+id/intervalo_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Intervalo:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_relogio"
+            app:layout_constraintTop_toBottomOf="@id/linha_concentracao" />
+
+        <TextView
+            android:id="@+id/intervalo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:text="8 vezes"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_relogio"
+            app:layout_constraintTop_toBottomOf="@id/intervalo_text" />
+
+        <ImageView
+            android:id="@+id/linha_intervalo"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/intervalo" />
+
+        <ImageView
+            android:id="@+id/ic_calendario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/calendario"
+            app:layout_constraintBottom_toTopOf="@+id/linha_qtdDias"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linha_intervalo" />
+
+
+        <TextView
+            android:id="@+id/qtdDias_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="Quantidade de Dias:"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_calendario"
+            app:layout_constraintTop_toBottomOf="@id/linha_intervalo" />
+
+        <TextView
+            android:id="@+id/qtdDias"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:text="20 dias"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ic_calendario"
+            app:layout_constraintTop_toBottomOf="@id/qtdDias_text" />
+
+        <ImageView
+            android:id="@+id/linha_qtdDias"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/qtdDias" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/red_btn"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@drawable/buttonred"
+        android:onClick="onBackPressed"
+        android:text="CANCELAR"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/green_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constLay2" />
+
+    <Button
+        android:id="@+id/green_btn"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@drawable/buttongreen"
+        android:onClick="continuar"
+        android:text="CONTINUAR"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/red_btn"
+        app:layout_constraintTop_toBottomOf="@id/constLay2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,19 +16,21 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/layoutAddToolbar"
-                app:title=""
                 app:titleTextColor="@android:color/white"
-                tools:ignore="MissingConstraints">
+                tools:ignore="MissingConstraints"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/image_voltar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:background="@color/layoutAddToolbar"
+                    android:onClick="voltar"
                     android:src="@drawable/arrow_back" />
 
                 <TextView
@@ -46,9 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".new_medication2">
+            tools:context=".NewMedication2">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
@@ -57,10 +58,7 @@
                 android:background="@color/layoutAddBackgroud"
                 tools:listitem="@layout/add_feed" />
 
-
         </LinearLayout>
-
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </RelativeLayout>

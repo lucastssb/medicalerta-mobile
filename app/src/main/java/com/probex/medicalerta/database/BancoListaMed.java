@@ -15,7 +15,7 @@ import java.util.List;
 public class BancoListaMed extends SQLiteOpenHelper {
     public static final String NOMEDB = "db_lista_medicamentos";
     public static final String LOCALDB = "/data/data/com.probex.medicalerta/databases/";
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     private Context mContext;
     private SQLiteDatabase sqLiteDatabase;
 
@@ -77,6 +77,26 @@ public class BancoListaMed extends SQLiteOpenHelper {
         cursor.close();
         sqLiteDatabase.close();
         return listMedicamento;
+    }
+
+    public Medicamento selecionarMedicamento(int id_med) {
+        openDatabase();
+        sqLiteDatabase = this.getWritableDatabase();
+
+        String sql = "SELECT * FROM tb_lista_medicamentos WHERE codigo = '" + id_med + "'";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        Medicamento medicamento = new Medicamento(Integer.parseInt(cursor.getString(0)),
+                Integer.parseInt(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+
+        cursor.close();
+        sqLiteDatabase.close();
+        return medicamento;
     }
 }
 
