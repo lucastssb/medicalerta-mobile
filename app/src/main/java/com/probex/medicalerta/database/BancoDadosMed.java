@@ -33,7 +33,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
     private static final String TABELA_ALARME = "tb_alarme";
 
     private static final String COLUNA_ID_ALARME = "id_alarme";
-    private static final String COLUNA_ID_MEDE = "id_mede";
+    private static final String COLUNA_ID_MEDE = "id_med";
     private static final String COLUNA_DATA_INICIAL = "data_inicial";
     private static final String COLUNA_DATA_FINAL = "data_final";
     private static final String COLUNA_ULTIMO_ALARME = "ultimo_alarme";
@@ -60,7 +60,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
         QUERY_COLUNA = " CREATE TABLE " + TABELA_ALARME + " ( "
                 + COLUNA_ID_ALARME + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + COLUNA_ID_MED + " INTEGER REFERENCES tb_medicamento (id_med) ON DELETE CASCADE ON UPDATE CASCADE,"
+                + COLUNA_ID_MEDE + " INTEGER REFERENCES tb_medicamento (id_med) ON DELETE CASCADE ON UPDATE CASCADE,"
                 + COLUNA_DATA_INICIAL + " INTEGER,"
                 + COLUNA_DATA_FINAL + " INTEGER,"
                 + COLUNA_ULTIMO_ALARME + " INTEGER,"

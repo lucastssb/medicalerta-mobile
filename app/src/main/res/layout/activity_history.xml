@@ -6,6 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".activity.HistoryActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/material_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbat_new_medication"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/layoutAddToolbar"
+            app:title=""
+            app:titleTextColor="@android:color/white"
+            tools:ignore="MissingConstraints">
+
+
+            <ImageButton
+                android:id="@+id/image_voltar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/layoutAddToolbar"
+                android:gravity="center"
+                android:src="@drawable/arrow_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Histórico"
+                android:textColor="@android:color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/outlinedTextField"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -13,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:hint="Pesquisar"
@@ -83,8 +122,10 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startDatePicker" />
+        app:layout_constraintTop_toBottomOf="@+id/startDatePicker"
+        app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/divider2"

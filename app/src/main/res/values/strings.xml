@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Medicalerta</string>
+    <string name="channel_name">test</string>
+    <string name="channel_description">channelTest</string>
 </resources>

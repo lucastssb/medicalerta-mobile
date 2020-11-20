@@ -28,4 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public void openHistoryListActivity(View view) {
         startActivity(new Intent(this, HistoryActivity.class));
     }
+    public void openProfileActivity(View view) {
+        startActivity(new Intent(this, ProfileActivity.class));
+    }
 }

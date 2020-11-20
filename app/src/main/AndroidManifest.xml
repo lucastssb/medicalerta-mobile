@@ -3,6 +3,8 @@
     package="com.probex.medicalerta">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AddMedication3"/>
+        <activity android:name=".activity.NotificationsActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+
+        <receiver
+            android:name=".receiver.AlarmIntentReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".services.AlarmSeekerService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.AlarmNotificationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.AlarmActivity" />
+        <activity android:name=".activity.AddMedication3" />
         <activity android:name=".activity.AddMedication2" />
         <activity android:name=".activity.AddMedication1" />
 

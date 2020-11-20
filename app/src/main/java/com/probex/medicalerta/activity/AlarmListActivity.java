@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.probex.medicalerta.R;
@@ -27,5 +28,11 @@ public class AlarmListActivity extends AppCompatActivity {
         //Define adapter
         AlarmItemAdapter adapter = new AlarmItemAdapter();
         recyclerAlarmList.setAdapter( adapter );
+    }
+
+    public void onBackPressed(){ //Botão BACK padrão do android
+        startActivity(new Intent(this, MainActivity.class)); //O efeito ao ser pressionado do botão (no caso abre a activity)
+        finishAffinity(); //Método para matar a activity e não deixa-lá indexada na pilhagem
+        return;
     }
 }
