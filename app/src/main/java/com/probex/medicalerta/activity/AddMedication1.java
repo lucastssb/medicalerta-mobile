@@ -72,7 +72,7 @@ public class AddMedication1 extends AppCompatActivity {
                 return;
             }
         }
-        showToast(ERROR, "Nome Incorreto");
+        showToast(ERROR, "Nome incorreto");
     }
 
     //voltar TEXTE
