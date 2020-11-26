@@ -115,7 +115,7 @@ public class AddMedication3 extends AppCompatActivity {
         int posicao = vezesDias.getSelectedItemPosition();
         switch (posicao) {
             case 0:
-                posicao = 0;
+                posicao = 1;
                 break;
             case 1:
                 posicao = 4;
@@ -152,7 +152,7 @@ public class AddMedication3 extends AppCompatActivity {
         //Criando Alarme
         alarme = new Alarme();
         alarme.setId_med(Integer.valueOf(value));
-        alarme.setData_inicial(data.getTime());
+        alarme.setData_inicial(horaInicial);
         alarme.setData_final(dataFinal);
         alarme.setUltimo_alarme(horaInicial);
         alarme.setIntervalo(posicao);

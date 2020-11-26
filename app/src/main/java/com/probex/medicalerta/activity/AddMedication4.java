@@ -62,7 +62,7 @@ public class AddMedication4 extends AppCompatActivity {
         }
 
         //Quantidade de vezes
-        if (alarme.getIntervalo() == 0) {
+        if (alarme.getIntervalo() == 1) {
             resultadoAlarme = "Uma vez ao dia";
         } else {
             resultadoAlarme = String.valueOf(alarme.getIntervalo() + " vezes ao dia");
