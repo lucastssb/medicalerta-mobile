@@ -9,8 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.probex.medicalerta.R;
+import com.probex.medicalerta.model.Alarm;
+
+import java.util.List;
 
 public class AlarmItemAdapter extends RecyclerView.Adapter<AlarmItemAdapter.MyViewHolder> {
+    public List<Alarm> alarms;
+
+    public AlarmItemAdapter(List<Alarm> alarms) {
+        this.alarms = alarms;
+    }
 
     @NonNull
     @Override
@@ -22,33 +30,38 @@ public class AlarmItemAdapter extends RecyclerView.Adapter<AlarmItemAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.name.setText("Dipirona");
-        holder.interval.setText("6");
-        holder.sunRiseTime.setText("06:00");
-        holder.dayTime.setText("12:00");
-        holder.nightTime.setText("18:00");
+        Alarm alarm = alarms.get(position);
+        holder.name.setText(alarm.getMedName());
+        holder.interval.setText(Integer.toString(alarm.getInterval()) + " vezes ao dia");
+        holder.nextAlarm.setText("Próximo alarme: " + alarm.getNextAlarmTime());
+        holder.finDate.setText("Término: " + alarm.getFinalDate());
+        holder.initDate.setText("Início: " + alarm.getInitialDate());
+
     }
+
 
     @Override
     public int getItemCount() {
-        return 10;
+        int amount = alarms.size();
+        return amount;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView interval;
-        private TextView sunRiseTime;
-        private TextView dayTime;
-        private TextView nightTime;
+        private TextView initDate;
+        private TextView finDate;
+        private TextView nextAlarm;
+
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.medName);
             interval = itemView.findViewById(R.id.interval);
-            sunRiseTime = itemView.findViewById(R.id.sunRiseTime);
-            dayTime = itemView.findViewById(R.id.dayTime);
-            nightTime = itemView.findViewById(R.id.nightTime);
+            initDate = itemView.findViewById(R.id.initDate);
+            finDate = itemView.findViewById(R.id.finDate);
+            nextAlarm = itemView.findViewById(R.id.nextAlarm);
         }
     }
 }

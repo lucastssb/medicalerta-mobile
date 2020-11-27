@@ -87,7 +87,7 @@
         app:layout_constraintTop_toTopOf="@+id/view5" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/nameMed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="150dp"
@@ -113,7 +113,7 @@
         app:layout_constraintTop_toTopOf="@+id/circularImageView2" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

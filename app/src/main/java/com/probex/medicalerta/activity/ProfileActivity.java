@@ -19,4 +19,9 @@ public class ProfileActivity extends AppCompatActivity {
     public void openHistoryListActivity(View view) {
         startActivity(new Intent(this, HistoryActivity.class));
     }
+
+    public void voltar(View view) {
+        finish();
+        overridePendingTransition(0, R.anim.mover_direita);
+    }
 }

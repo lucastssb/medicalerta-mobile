@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    app:cardBackgroundColor="#dddddd"
+    app:cardBackgroundColor="#FAFAFA"
     app:cardElevation="10dp">
 
     <LinearLayout
@@ -15,12 +15,27 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/name"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/medNameHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textSize="24sp" />
+
+            <ImageView
+                android:id="@+id/iconMedHistory"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ampulheta" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +43,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/dateStart"
+                android:id="@+id/dateStartHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -38,15 +53,16 @@
             <View
                 android:id="@+id/divider4"
                 android:layout_width="10dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/dateEnd"
+                android:id="@+id/dateEndHistory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="right"
                 android:text="TextView"
                 android:textSize="18sp" />
 
@@ -55,36 +71,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/timeFirst"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/timeSecond"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/timeThird"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/timeFourth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-        </LinearLayout>
+            android:orientation="horizontal" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

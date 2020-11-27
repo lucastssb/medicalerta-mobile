@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/layoutHistoricoBackgroud"
     tools:context=".activity.HistoryActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,7 +17,7 @@
             android:id="@+id/toolbat_new_medication"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/layoutAddToolbar"
+            android:background="@color/layoutHistoricoToolbar"
             app:title=""
             app:titleTextColor="@android:color/white"
             tools:ignore="MissingConstraints">
@@ -26,7 +27,8 @@
                 android:id="@+id/image_voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/layoutAddToolbar"
+                android:onClick="voltar"
+                android:background="@color/layoutHistoricoToolbar"
                 android:gravity="center"
                 android:src="@drawable/arrow_back" />
 
@@ -56,13 +58,23 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:hint="Pesquisar"
+        android:textColorHint="#FAFAFA"
+        app:boxStrokeColor="#FFFFFF"
+        app:endIconTint="#F4F4F4"
+        app:helperTextTextColor="#FFFFFF"
+        app:hintTextColor="#F6F6F6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderTextColor="#FDFDFD"
+        app:startIconTint="#FFFFFF"
+        app:suffixTextColor="#FAF7F7">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,8 +87,11 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="22/08/2020"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:rippleColor="#FFFFFF"
+        app:strokeColor="#FFFFFF" />
 
     <Button
         android:id="@+id/startDatePicker"
@@ -87,8 +102,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="12/08/2020"
+        android:textColor="#FFFFFF"
+        app:iconTint="#F3F3F3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:strokeColor="#FFFFFF" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -106,6 +124,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="Intenvalo"
+        android:textColor="#FBFBFB"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outlinedTextField" />

@@ -1,58 +1,35 @@
 package com.probex.medicalerta.model;
 
-import java.util.Date;
 
 public class Alarm {
-    private String alarmId;
-    private String idMed;
-    private Date initialDate;
-    private Date finalDate;
-    private Date lastAlarm;
+    private String medName;
+    private String nextAlarmTime;
     private int interval;
+    private String initialDate;
+    private String finalDate;
 
-    @Override
-    public String toString() {
-        return "Alarm{" +
-                "alarmId='" + alarmId + '\'' +
-                ", idMed='" + idMed + '\'' +
-                ", initialDate=" + initialDate +
-                ", finalDate=" + finalDate +
-                ", lastAlarm=" + lastAlarm +
-                ", interval=" + interval +
-                '}';
-    }
-
-    public Alarm(String alarmId, String idMed, Date initialDate, Date finalDate, Date lastAlarm, int interval) {
-        this.alarmId = alarmId;
-        this.idMed = idMed;
-        this.initialDate = initialDate;
-        this.finalDate = finalDate;
-        this.lastAlarm = lastAlarm;
+    public Alarm(String medName, String nextAlarmTime, int interval, String initialDate, String finalDate) {
+        this.medName = medName;
+        this.nextAlarmTime = nextAlarmTime;
         this.interval = interval;
-    }
-
-    public Date getInitialDate() {
-        return initialDate;
-    }
-
-    public void setInitialDate(Date initialDate) {
         this.initialDate = initialDate;
-    }
-
-    public Date getFinalDate() {
-        return finalDate;
-    }
-
-    public void setFinalDate(Date finalDate) {
         this.finalDate = finalDate;
     }
 
-    public Date getLastAlarm() {
-        return lastAlarm;
+    public String getMedName() {
+        return medName;
     }
 
-    public void setLastAlarm(Date lastAlarm) {
-        this.lastAlarm = lastAlarm;
+    public void setMedName(String medName) {
+        this.medName = medName;
+    }
+
+    public String getNextAlarmTime() {
+        return nextAlarmTime;
+    }
+
+    public void setNextAlarmTime(String nextAlarmTime) {
+        this.nextAlarmTime = nextAlarmTime;
     }
 
     public int getInterval() {
@@ -61,5 +38,21 @@ public class Alarm {
 
     public void setInterval(int interval) {
         this.interval = interval;
+    }
+
+    public String getInitialDate() {
+        return initialDate;
+    }
+
+    public void setInitialDate(String initialDate) {
+        this.initialDate = initialDate;
+    }
+
+    public String getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(String finalDate) {
+        this.finalDate = finalDate;
     }
 }

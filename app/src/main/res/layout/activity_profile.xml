@@ -26,6 +26,7 @@
                 android:id="@+id/image_voltar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="voltar"
                 android:background="#FFCDCDCD"
                 android:gravity="center"
                 android:src="@drawable/arrow_back" />

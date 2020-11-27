@@ -9,8 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.probex.medicalerta.R;
+import com.probex.medicalerta.model.Alarm;
+
+import java.util.List;
 
 public class MedItemAdapter extends RecyclerView.Adapter<MedItemAdapter.MyViewHolder> {
+    private List<Alarm> alarms;
+
+    public MedItemAdapter(List<Alarm> alarms) {
+        this.alarms = alarms;
+    }
 
     @NonNull
     @Override
@@ -22,38 +30,31 @@ public class MedItemAdapter extends RecyclerView.Adapter<MedItemAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.name.setText("Dipirona");
-        holder.dateStart.setText("12/18/2020");
-        holder.dateEnd.setText("22/18/2020");
-        holder.timeFirst.setText("06:00");
-        holder.timeSecond.setText("12:00");
-        holder.timeThird.setText("18:00");
-        holder.timeFourth.setText("18:00");
+        Alarm alarm = alarms.get(position);
+
+        holder.name.setText(alarm.getMedName());
+        holder.dateStart.setText(alarm.getInitialDate());
+        holder.dateEnd.setText(alarm.getFinalDate());
+
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        int count = alarms.size();
+        return count;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView dateStart;
         private TextView dateEnd;
-        private TextView timeFirst;
-        private TextView timeSecond;
-        private TextView timeThird;
-        private TextView timeFourth;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
-            dateStart = itemView.findViewById(R.id.dateStart);
-            dateEnd = itemView.findViewById(R.id.dateEnd);
-            timeFirst = itemView.findViewById(R.id.timeFirst);
-            timeSecond = itemView.findViewById(R.id.timeSecond);
-            timeThird = itemView.findViewById(R.id.timeThird);
-            timeFourth = itemView.findViewById(R.id.timeFourth);
+            name = itemView.findViewById(R.id.medNameHistory);
+            dateStart = itemView.findViewById(R.id.dateStartHistory);
+            dateEnd = itemView.findViewById(R.id.dateEndHistory);
 
         }
     }
