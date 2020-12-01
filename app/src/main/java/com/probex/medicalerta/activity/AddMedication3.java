@@ -137,6 +137,7 @@ public class AddMedication3 extends AppCompatActivity {
 
         cal.set(Calendar.HOUR_OF_DAY, t1Hour);
         cal.set(Calendar.MINUTE, t1Minute);
+        cal.set(Calendar.SECOND, 0);
 
         data = cal.getTime();
         horaInicial = data.getTime();
@@ -154,7 +155,7 @@ public class AddMedication3 extends AppCompatActivity {
         alarme.setId_med(Integer.valueOf(value));
         alarme.setData_inicial(horaInicial);
         alarme.setData_final(dataFinal);
-        alarme.setUltimo_alarme(horaInicial);
+        alarme.setUltimo_alarme(0);
         alarme.setIntervalo(posicao);
 
         Intent intent = new Intent(AddMedication3.this, AddMedication4.class);

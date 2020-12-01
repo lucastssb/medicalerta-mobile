@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -13,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.CreateUserActivity"></activity>
         <activity
             android:name=".activity.ListaMedicamento2"
             android:launchMode="singleTop"
@@ -21,23 +24,6 @@
             android:name=".activity.ListaMedicamento1"
             android:launchMode="singleTop"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.NotificationsActivity" />
-        <activity android:name=".activity.ProfileActivity" />
-
-        <receiver
-            android:name=".receiver.AlarmIntentReceiver"
-            android:enabled="true"
-            android:exported="true" />
-
-        <service
-            android:name=".services.AlarmSeekerService"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".services.AlarmNotificationService"
-            android:enabled="true"
-            android:exported="true" />
-
         <activity
             android:name=".activity.AddMedication4"
             android:launchMode="singleTop"
@@ -54,16 +40,8 @@
             android:name=".activity.AddMedication1"
             android:launchMode="singleTop"
             android:parentActivityName=".activity.MainActivity" />
-
-        <receiver android:name=".receiver.BootCompletedIntentReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver android:name=".receiver.AlarmReceiver" />
-
-        <service android:name=".services.AlarmService" />
-
+        <activity android:name=".activity.NotificationsActivity" />
+        <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.HistoryActivity" />
         <activity android:name=".activity.AlarmActivity" />
         <activity android:name=".activity.AlarmListActivity" />
@@ -76,6 +54,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".receiver.AlarmIntentReceiver"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver android:name=".receiver.BootCompletedIntentReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".receiver.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".services.AlarmSeekerService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.AlarmNotificationService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.AlarmService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
     </application>
 
 </manifest>

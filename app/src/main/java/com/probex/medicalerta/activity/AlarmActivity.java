@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -33,5 +34,13 @@ public class AlarmActivity extends AppCompatActivity {
 
         textName.setText(medNome);
         textHour.setText(hora);
+    }
+
+    public void tookIt(View view) {
+        finish();
+    }
+
+    public void didntTakeIt(View view) {
+        finish();
     }
 }

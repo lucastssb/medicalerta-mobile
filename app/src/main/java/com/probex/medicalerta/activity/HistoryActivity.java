@@ -88,6 +88,9 @@ public class HistoryActivity extends AppCompatActivity {
             SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy");
             String fDate = sdf2.format(finDate);
 
+            if(alarme.getData_final() == 0){
+                fDate = "Indeterminado";
+            }
 
             alarms.add(new Alarm(medicamento.getProduto(), nexAlarm, alarme.getIntervalo(), inDate, fDate));
         }

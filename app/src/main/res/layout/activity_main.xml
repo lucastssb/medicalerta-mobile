@@ -78,21 +78,21 @@
 
 
     <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/circularImageView3"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:foreground="@drawable/cicle_button"
         android:onClick="openProfileActivity"
         android:src="@drawable/lucas"
         app:civ_border_color="#111111"
         app:civ_border_width="0dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#111111"
-        app:civ_shadow_radius="3dp"
+        app:civ_shadow_radius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.mikhaellopez.circularimageview.CircularImageView>
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <ImageButton
@@ -198,5 +198,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/history" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/notification_icon_rounded"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/circularImageView3"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/circularImageView3" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Lucas Barbosa"
+        android:textColor="#383838"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/circularImageView3"
+        app:layout_constraintEnd_toEndOf="@+id/circularImageView3"
+        app:layout_constraintStart_toStartOf="@+id/circularImageView3" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24 anos"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,9 +55,16 @@ public class AlarmListActivity extends AppCompatActivity {
 
         for (Alarme alarme:listaAlarmes
              ) {
+            long nextAlarmInMillis;
             medicamento = bancoDadosMed.selecionarMedicamento(alarme.getId_med());
 
-            Calendar nextAlarm = convertMillisIntoCalendar(alarme.getUltimo_alarme() + 24 / alarme.getIntervalo() * 3600000);
+            if(alarme.getUltimo_alarme() == 0) {
+                nextAlarmInMillis = alarme.getData_inicial();
+            }else {
+                nextAlarmInMillis = alarme.getUltimo_alarme();
+            }
+
+            Calendar nextAlarm = convertMillisIntoCalendar(nextAlarmInMillis + 24 / alarme.getIntervalo() * 3600000);
             Date nAlarmDate = nextAlarm.getTime();
             SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm");
             String nexAlarm = sdf3.format(nAlarmDate);
@@ -72,6 +79,9 @@ public class AlarmListActivity extends AppCompatActivity {
             SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy");
             String fDate = sdf2.format(finDate);
 
+            if(alarme.getData_final() == 0){
+                fDate = "Indeterminado";
+            }
 
             alarms.add(new Alarm(medicamento.getProduto(), nexAlarm, alarme.getIntervalo(), inDate, fDate));
         }
