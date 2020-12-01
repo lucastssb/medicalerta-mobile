@@ -17,6 +17,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.CreateUserActivity"></activity>
         <activity
+            android:name=".activity.ListaMedicamento2"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.ListaMedicamento1" />
+        <activity
+            android:name=".activity.ListaMedicamento1"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
             android:name=".activity.AddMedication4"
             android:launchMode="singleTop"
             android:parentActivityName=".activity.AddMedication3" />
