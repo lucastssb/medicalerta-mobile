@@ -13,7 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NotificationsActivity"></activity>
+        <activity
+            android:name=".activity.ListaMedicamento2"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.ListaMedicamento1" />
+        <activity
+            android:name=".activity.ListaMedicamento1"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.NotificationsActivity" />
         <activity android:name=".activity.ProfileActivity" />
 
         <receiver
@@ -33,7 +41,7 @@
         <activity
             android:name=".activity.AddMedication4"
             android:launchMode="singleTop"
-            android:parentActivityName=".activity.AddMedication3"/>
+            android:parentActivityName=".activity.AddMedication3" />
         <activity
             android:name=".activity.AddMedication3"
             android:launchMode="singleTop"

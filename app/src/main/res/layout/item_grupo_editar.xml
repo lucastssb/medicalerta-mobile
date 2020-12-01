@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ff9b999a"
+    android:stretchColumns="1">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvIntervalo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Item"
+            android:textColor="@android:color/white"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvIntervaloValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="right"
+            android:text="Valor"
+            android:textColor="@android:color/white" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tvDataInicial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Item"
+            android:textColor="@android:color/white"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDataInicialValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="right"
+            android:text="Valor"
+            android:textColor="@android:color/white" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tvDataFinal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Item"
+            android:textColor="@android:color/white"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvDataFinalValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="right"
+            android:text="Valor"
+            android:textColor="@android:color/white" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tvQtdDias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Item"
+            android:textColor="@android:color/white"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvQtdDiasValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="right"
+            android:text="Valor"
+            android:textColor="@android:color/white" />
+    </TableRow>
+
+    <Button
+        android:id="@+id/tvedit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/btnRed"
+        android:text="Editar"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+</TableLayout>

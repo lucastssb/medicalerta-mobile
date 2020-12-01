@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/add_feed_rounded">
+
+    <ImageView
+        android:layout_marginLeft="23dp"
+        android:id="@+id/pictograma"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tvGrupo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="8"
+        android:text="Grupo"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+</LinearLayout>

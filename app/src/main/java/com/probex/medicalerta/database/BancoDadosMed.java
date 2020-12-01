@@ -115,7 +115,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
     }
 
     //TABELA MEDICAMENTO
-    void addMedicamento(Medicamento medicamento) {
+    public void addMedicamento(Medicamento medicamento) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -133,14 +133,14 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    void apagarMedicamento(Medicamento medicamento) {
+    public void apagarMedicamento(Medicamento medicamento) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABELA_MEDICAMENTO, COLUNA_ID_MED + " = ? ", new String[]{String.valueOf(medicamento.getId_med())});
         db.close();
     }
 
-    Medicamento selecionarMedicamento(int id_med) {
+    public Medicamento selecionarMedicamento(int id_med) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_MEDICAMENTO, new String[]{COLUNA_ID_MED, COLUNA_INDICACAO,
@@ -158,7 +158,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         return medicamento;
     }
 
-    void atualizaMedicamento(Medicamento medicamento) {
+    public void atualizaMedicamento(Medicamento medicamento) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -203,7 +203,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
     //TABELA ALARME
 
-    void addAlarme(Alarme alarme) {
+    public void addAlarme(Alarme alarme) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -218,14 +218,14 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    void apagarAlarme(Alarme alarme) {
+    public void apagarAlarme(Alarme alarme) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABELA_ALARME, COLUNA_ID_ALARME + " = ? ", new String[]{String.valueOf(alarme.getId_alarme())});
         db.close();
     }
 
-    Alarme selecionarAlarme(int id_alarme) {
+    public Alarme selecionarAlarme(int id_alarme) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_ALARME, new String[]{COLUNA_ID_ALARME, COLUNA_ID_MEDE, COLUNA_DATA_INICIAL,
@@ -242,7 +242,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         return alarme;
     }
 
-    void atualizaAlarme(Alarme alarme) {
+    public void atualizaAlarme(Alarme alarme) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -282,7 +282,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
     //TABELA NOTIFICAÇÃO
 
-    void addMedicamentoHistorico(Medicamento medicamento) {
+    public void addMedicamentoHistorico(Medicamento medicamento) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -300,14 +300,14 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    void apagarMedicamentoHistorico(Medicamento medicamento) {
+    public void apagarMedicamentoHistorico(Medicamento medicamento) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABELA_HISTORICO, COLUNA_ID_MED + " = ? ", new String[]{String.valueOf(medicamento.getId_med())});
         db.close();
     }
 
-    Medicamento selecionarMedicamentoHistorico(int id_med) {
+    public Medicamento selecionarMedicamentoHistorico(int id_med) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_HISTORICO, new String[]{COLUNA_ID_MED, COLUNA_INDICACAO,
@@ -325,7 +325,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         return medicamento;
     }
 
-    void atualizaMedicamentoHistorico(Medicamento medicamento) {
+    public void atualizaMedicamentoHistorico(Medicamento medicamento) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -369,7 +369,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
     }
 
     //TABELA NOTIFICAÇÃO
-    void addNotificação(Notificacao notificacao) {
+    public void addNotificação(Notificacao notificacao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -382,14 +382,14 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    void apagarNotificacao(Notificacao notificacao) {
+    public void apagarNotificacao(Notificacao notificacao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABELA_NOTIFICACAO, COLUNA_ID_NOTIFICACAO + " = ? ", new String[]{String.valueOf(notificacao.getId())});
         db.close();
     }
 
-    Notificacao selecionarNotificacao(int id_notificacao) {
+    public Notificacao selecionarNotificacao(int id_notificacao) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_NOTIFICACAO, new String[]{COLUNA_ID_NOTIFICACAO, COLUNA_NOME_NOTIFICACAO, COLUNA_DESCRICAO_NOTIFICACAO}, COLUNA_ID_NOTIFICACAO +
@@ -405,7 +405,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         return notificacao;
     }
 
-    void atualizaNotificacao(Notificacao notificacao) {
+    public void atualizaNotificacao(Notificacao notificacao) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -440,7 +440,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
     //TABELA Usuario
 
-    void addUsuario(Usuario usuario) {
+    public void addUsuario(Usuario usuario) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -454,14 +454,14 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    void apagarUsuario(Usuario usuario) {
+    public void apagarUsuario(Usuario usuario) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete(TABELA_USUARIO, COLUNA_ID_NOTIFICACAO + " = ? ", new String[]{String.valueOf(usuario.getId())});
         db.close();
     }
 
-    Usuario selecionarUsuario(int id_usuario) {
+    public Usuario selecionarUsuario(int id_usuario) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_USUARIO, new String[]{COLUNA_ID_USUARIO, COLUNA_NOME_USUARIO, COLUNA_IDADE_USUARIO, COLUNA_FOTO_USUARIO}, COLUNA_ID_USUARIO +
@@ -477,7 +477,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         return usuario;
     }
 
-    void atualizaUsuario(Usuario usuario) {
+    public void atualizaUsuario(Usuario usuario) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();

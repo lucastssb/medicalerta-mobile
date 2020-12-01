@@ -66,9 +66,9 @@ public class AddMedication2 extends AppCompatActivity {
             bancoListaMed.getReadableDatabase();
             //RETIRAR
             if (copiaBanco(this)) {
-                alert("Banco copiado com sucesso");
+
             } else {
-                alert("Erro ao copiar");
+                alert("[ERROR] Banco de Dados");
             }
         }
     }
