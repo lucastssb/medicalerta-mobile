@@ -1,5 +1,6 @@
 package com.probex.medicalerta.services;
 
+import android.app.IntentService;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
@@ -18,19 +20,21 @@ import com.probex.medicalerta.activity.AlarmActivity;
 
 import java.util.Date;
 
-public class AlarmNotificationService extends Service {
+public class AlarmNotificationService extends IntentService {
 
     public static final String CHANNEL_ID = "NOTIFICATION_MED";
 
-    @Override
-    public IBinder onBind(Intent intent) {
-
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+    /**
+     * Creates an IntentService.  Invoked by your subclass's constructor.
+     *
+     * @param name Used to name the worker thread, important only for debugging.
+     */
+    public AlarmNotificationService() {
+        super("AlarmNotificationService");
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    protected void onHandleIntent(@Nullable Intent intent) {
 
         if(intent.getExtras() != null) {
             Bundle data = intent.getExtras();
@@ -41,10 +45,6 @@ public class AlarmNotificationService extends Service {
             createNotificationChannel();
             createNotification(medNome, idMed, hora);
         }
-
-
-
-        return super.onStartCommand(intent, flags, startId);
     }
 
     private void createNotification(String medNome, int idMed, String hora) {
@@ -57,10 +57,11 @@ public class AlarmNotificationService extends Service {
 
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.relogio)
+                .setSmallIcon(R.drawable.medicamento2)
                 .setContentTitle("Hora do remédio")
                 .setContentText(medNome)
-                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM))
+                .setAutoCancel(true)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setFullScreenIntent(fullScreenPendingIntent, true);
 
@@ -70,6 +71,12 @@ public class AlarmNotificationService extends Service {
 
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(5534, builder.build());
+    }
+
+    @Override
+    public void onDestroy() {
+        System.out.println("Alarm notification service destroyed");
+        super.onDestroy();
     }
 
     private void createNotificationChannel() {

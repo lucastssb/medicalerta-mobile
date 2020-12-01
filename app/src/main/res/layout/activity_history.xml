@@ -30,7 +30,7 @@
                 android:onClick="voltar"
                 android:background="@color/layoutHistoricoToolbar"
                 android:gravity="center"
-                android:src="@drawable/arrow_back" />
+                app:srcCompat="@drawable/arrow_back" />
 
             <TextView
                 android:layout_width="wrap_content"

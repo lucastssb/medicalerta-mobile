@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(),R.anim.mover_esquerda ,R.anim.fade_out );
         ActivityCompat.startActivity(MainActivity.this, new Intent(MainActivity.this, AddMedication1.class), activityOptionsCompat.toBundle());
     }
-
     public void openAlarmListActivity(View view) {
         startActivity(new Intent(this, AlarmListActivity.class));
     }

@@ -20,6 +20,14 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(new Intent(this, HistoryActivity.class));
     }
 
+    public void openNotificationActivity(View view) {
+        startActivity(new Intent(this, NotificationsActivity.class));
+    }
+
+    public void openCreateUserActivity(View view) {
+        startActivity(new Intent(this, CreateUserActivity.class));
+    }
+
     public void voltar(View view) {
         finish();
         overridePendingTransition(0, R.anim.mover_direita);

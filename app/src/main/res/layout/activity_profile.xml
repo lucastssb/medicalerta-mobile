@@ -29,7 +29,7 @@
                 android:onClick="voltar"
                 android:background="#FFCDCDCD"
                 android:gravity="center"
-                android:src="@drawable/arrow_back" />
+                app:srcCompat="@drawable/arrow_back" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,8 +113,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
+        android:onClick="openNotificationActivity"
         android:text="Notificações"
         android:textColor="@android:color/secondary_text_dark"
+        android:textStyle="bold"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -127,7 +129,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#FFFFFF"
-        android:text="Button"
+        android:onClick="openCreateUserActivity"
+        android:text="Notícias"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textStyle="bold"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

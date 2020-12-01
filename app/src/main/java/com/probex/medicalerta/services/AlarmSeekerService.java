@@ -1,6 +1,7 @@
 package com.probex.medicalerta.services;
 
 import android.app.AlarmManager;
+import android.app.IntentService;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.os.IBinder;
 
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.probex.medicalerta.adapter.Alarme;
@@ -27,23 +29,27 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 
-public class AlarmSeekerService extends Service {
+public class AlarmSeekerService extends IntentService {
     //private List<Alarm> alarms = new ArrayList();
     private BancoDadosMed bancoDadosMed;
     private List<Alarme> listaAlarmes = new ArrayList<Alarme>();
     private long timeInMillis;
     private Medicamento medicamento;
 
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+    /**
+     * Creates an IntentService.  Invoked by your subclass's constructor.
+     *
+     * @param name Used to name the worker thread, important only for debugging.
+     */
+    public AlarmSeekerService() {
+        super("AlarmSeekerService");
     }
+
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    protected void onHandleIntent(@Nullable Intent intent) {
+
         bancoDadosMed = new BancoDadosMed(this);
         listaAlarmes = bancoDadosMed.listaTodosAlarmes();
 
@@ -58,9 +64,18 @@ public class AlarmSeekerService extends Service {
         //calendar.set(Calendar.SECOND, 0);
 
         for (Alarme alarme: listaAlarmes
-             ) {
-            if(alarme.getData_inicial() - timeInMillis <= 900000 && alarme.getData_inicial() >= timeInMillis){
-                Timestamp timestamp = new Timestamp(alarme.getData_inicial());
+        ) {
+            long nextAlarm;
+
+            if(alarme.getUltimo_alarme() == 0) {
+                nextAlarm = alarme.getData_inicial();
+
+            }else {
+                nextAlarm = alarme.getUltimo_alarme() + 24 / alarme.getIntervalo() * 3600000;
+            }
+
+            if(nextAlarm - timeInMillis <= 900000 && nextAlarm >= timeInMillis){
+                Timestamp timestamp = new Timestamp(nextAlarm);
                 Calendar calendar = GregorianCalendar.getInstance();
                 calendar.setTimeInMillis(timestamp.getTime());
 
@@ -75,12 +90,18 @@ public class AlarmSeekerService extends Service {
                 int idMed = alarme.getId_med();
 
                 startAlarm(calendar, medNome, idMed, alarmHour);
+
+                alarme.setUltimo_alarme(nextAlarm);
+                bancoDadosMed.atualizaAlarme(alarme);
             }
         }
 
+    }
 
-
-        return START_STICKY;
+    @Override
+    public void onDestroy() {
+        System.out.println("Alarm Seeker service destroyed");
+        super.onDestroy();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
