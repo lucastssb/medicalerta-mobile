@@ -110,12 +110,6 @@ public class AddMedication4 extends AppCompatActivity {
     }
 
     public void continuar(View view) {
-
-        try {
-            if (db.selecionarMedicamento(med.getId_med()) != null) {
-                showToast(ERROR, "Medicamento já foi cadastrado");
-            }
-        } catch (Exception e) {
             db.addMedicamento(med);
             db.addAlarme(alarme);
 
@@ -123,6 +117,6 @@ public class AddMedication4 extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        }
+        
     }
 }

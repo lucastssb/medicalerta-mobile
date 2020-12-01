@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.probex.medicalerta.R;
 import com.probex.medicalerta.adapter.Medicamento;
+import com.probex.medicalerta.database.BancoDadosMed;
 import com.probex.medicalerta.database.BancoListaMed;
 
 import java.io.File;
@@ -33,6 +35,8 @@ public class AddMedication2 extends AppCompatActivity {
 
     private PostAdapter postAdapter;
     private BancoListaMed bancoListaMed;
+    private BancoDadosMed db = new BancoDadosMed(this);
+    private static final int SUCCESS = 1, ERROR = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,17 +173,47 @@ public class AddMedication2 extends AppCompatActivity {
                 });
             }
 
-            public void click(){
-                Intent intent = new Intent(AddMedication2.this, AddMedication3.class);
-                intent.putExtra("key", idV.toString());
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(),R.anim.mover_esquerda ,R.anim.fade_out );
-                ActivityCompat.startActivity(AddMedication2.this, intent, activityOptionsCompat.toBundle());
+            public void click() {
+                try {
+                    if (db.selecionarMedicamento(idV) != null) {
+                        showToast(ERROR, "Medicamento já foi cadastrado");
+                    }
+                } catch (Exception e) {
+                    Intent intent = new Intent(AddMedication2.this, AddMedication3.class);
+                    intent.putExtra("key", idV.toString());
+                    ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.mover_esquerda, R.anim.fade_out);
+                    ActivityCompat.startActivity(AddMedication2.this, intent, activityOptionsCompat.toBundle());
+                }
             }
         }
     }
+
     public void voltar(View view) {
         finish();
         overridePendingTransition(0, R.anim.mover_direita);
+    }
+
+    private void showToast(int type, String message) {
+        ViewGroup view = findViewById(R.id.container_toast);
+        View v = getLayoutInflater().inflate(R.layout.custom_toast, view);
+
+        switch (type) {
+            case SUCCESS:
+                v.setBackground(ContextCompat.getDrawable(this, R.drawable.toast_sucess));
+                break;
+            case ERROR:
+                v.setBackground(ContextCompat.getDrawable(this, R.drawable.toast_error));
+                break;
+
+        }
+
+        TextView txtMessage = v.findViewById(R.id.txt_message);
+        txtMessage.setText(message);
+
+        Toast toast = new Toast(this);
+        toast.setView(v);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 }
