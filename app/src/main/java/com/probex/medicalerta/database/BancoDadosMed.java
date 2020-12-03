@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.probex.medicalerta.adapter.Alarme;
+import com.probex.medicalerta.adapter.Historico;
 import com.probex.medicalerta.adapter.Medicamento;
 import com.probex.medicalerta.adapter.Notificacao;
 import com.probex.medicalerta.adapter.Usuario;
@@ -19,6 +20,8 @@ import java.util.List;
 public class BancoDadosMed extends SQLiteOpenHelper {
     private static final int VERSAO_BANCO = 1;
     private static final String BANCO_MEDICAMENTO = "db_medicalerta";
+
+
     //Tabela Medicamento
     private static final String TABELA_MEDICAMENTO = "tb_medicamento";
     private static final String COLUNA_ID_MED = "id_med";
@@ -54,6 +57,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
     //Tabela Histórico
     private static final String TABELA_HISTORICO = "tb_historico";
+    private static final String COLUNA_ID_HISTORICO = "id_historico";
 
 
     public BancoDadosMed(@Nullable Context context) {
@@ -97,14 +101,18 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.execSQL(QUERY_COLUNA);
 
         QUERY_COLUNA = " CREATE TABLE " + TABELA_HISTORICO + " ( "
-                + COLUNA_ID_MED + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUNA_ID_HISTORICO + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + COLUNA_ID_MED + "  INTEGER,"
                 + COLUNA_INDICACAO + " INTEGER,"
                 + COLUNA_SUBSTANCIA + " TEXT, "
                 + COLUNA_PRODUTO + " TEXT,"
                 + COLUNA_CONCENTRACAO + " TEXT,"
                 + COLUNA_FORMA_FARMACEUTICA + " TEXT,"
                 + COLUNA_QUANTIDADE + " TEXT,"
-                + COLUNA_SUBCLASSE + " TEXT)";
+                + COLUNA_SUBCLASSE + " TEXT,"
+                + COLUNA_DATA_INICIAL + " INTEGER,"
+                + COLUNA_DATA_FINAL + " INTEGER,"
+                + COLUNA_INTERVALO + " INTEGER)";
         db.execSQL(QUERY_COLUNA);
 
     }
@@ -280,88 +288,100 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
     }
 
-    //TABELA NOTIFICAÇÃO
-
-    public void addMedicamentoHistorico(Medicamento medicamento) {
+    //TABELA Históricohistorico
+    public void addHistorico(Historico historico) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        values.put(COLUNA_ID_MED, medicamento.getId_med());
-        values.put(COLUNA_INDICACAO, medicamento.getIndicacao());
-        values.put(COLUNA_SUBSTANCIA, medicamento.getSubstancia());
-        values.put(COLUNA_PRODUTO, medicamento.getProduto());
-        values.put(COLUNA_CONCENTRACAO, medicamento.getConcentracao());
-        values.put(COLUNA_FORMA_FARMACEUTICA, medicamento.getForma_farmaceutica());
-        values.put(COLUNA_QUANTIDADE, medicamento.getQuantidade());
-        values.put(COLUNA_SUBCLASSE, medicamento.getSubclasse());
+        values.put(COLUNA_ID_MED, historico.getId_medicamento());
+        values.put(COLUNA_INDICACAO, historico.getIndicacao());
+        values.put(COLUNA_SUBSTANCIA, historico.getSubstancia());
+        values.put(COLUNA_PRODUTO, historico.getProduto());
+        values.put(COLUNA_CONCENTRACAO, historico.getConcentracao());
+        values.put(COLUNA_FORMA_FARMACEUTICA, historico.getForma_farmaceutica());
+        values.put(COLUNA_QUANTIDADE, historico.getQuantidade());
+        values.put(COLUNA_SUBCLASSE, historico.getSubclasse());
+        values.put(COLUNA_DATA_INICIAL, historico.getData_inicial());
+        values.put(COLUNA_DATA_FINAL, historico.getData_final());
+        values.put(COLUNA_INTERVALO, historico.getIntervalo());
+
 
         db.insert(TABELA_HISTORICO, null, values);
         db.close();
     }
 
-    public void apagarMedicamentoHistorico(Medicamento medicamento) {
+    public void apagarHistorico(Historico historico) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABELA_HISTORICO, COLUNA_ID_MED + " = ? ", new String[]{String.valueOf(medicamento.getId_med())});
+        db.delete(TABELA_HISTORICO, COLUNA_ID_HISTORICO + " = ? ", new String[]{String.valueOf(historico.getId_historico())});
         db.close();
     }
 
-    public Medicamento selecionarMedicamentoHistorico(int id_med) {
+    public Historico selecionarHistorico(int id_historico) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABELA_HISTORICO, new String[]{COLUNA_ID_MED, COLUNA_INDICACAO,
+        Cursor cursor = db.query(TABELA_HISTORICO, new String[]{COLUNA_ID_HISTORICO, COLUNA_ID_MED, COLUNA_INDICACAO,
                 COLUNA_SUBSTANCIA, COLUNA_PRODUTO, COLUNA_CONCENTRACAO, COLUNA_FORMA_FARMACEUTICA,
-                COLUNA_QUANTIDADE, COLUNA_SUBCLASSE}, COLUNA_ID_MED +
-                " = ? ", new String[]{String.valueOf(id_med)}, null, null, null);
+                COLUNA_QUANTIDADE, COLUNA_SUBCLASSE, COLUNA_DATA_INICIAL, COLUNA_DATA_FINAL, COLUNA_INTERVALO}, COLUNA_ID_HISTORICO +
+                " = ? ", new String[]{String.valueOf(id_historico)}, null, null, null);
 
         if (cursor != null) {
             cursor.moveToFirst();
         }
 
-        Medicamento medicamento = new Medicamento(Integer.parseInt(cursor.getString(0)),
-                Integer.parseInt(cursor.getString(1)), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7));
+        Historico historico = new Historico(Integer.parseInt(cursor.getString(0)),
+                Integer.parseInt(cursor.getString(1)), Integer.parseInt(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8), Long.parseLong(cursor.getString(9)), Long.parseLong(cursor.getString(10)), Integer.parseInt(cursor.getString(11)));
 
-        return medicamento;
+        return historico;
     }
 
-    public void atualizaMedicamentoHistorico(Medicamento medicamento) {
+    public void atualizaHistorico(Historico historico) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        values.put(COLUNA_INDICACAO, medicamento.getIndicacao());
-        values.put(COLUNA_SUBSTANCIA, medicamento.getSubstancia());
-        values.put(COLUNA_PRODUTO, medicamento.getProduto());
-        values.put(COLUNA_CONCENTRACAO, medicamento.getConcentracao());
-        values.put(COLUNA_FORMA_FARMACEUTICA, medicamento.getForma_farmaceutica());
-        values.put(COLUNA_QUANTIDADE, medicamento.getQuantidade());
-        values.put(COLUNA_SUBCLASSE, medicamento.getSubclasse());
+        values.put(COLUNA_ID_MED, historico.getId_medicamento());
+        values.put(COLUNA_INDICACAO, historico.getIndicacao());
+        values.put(COLUNA_SUBSTANCIA, historico.getSubstancia());
+        values.put(COLUNA_PRODUTO, historico.getProduto());
+        values.put(COLUNA_CONCENTRACAO, historico.getConcentracao());
+        values.put(COLUNA_FORMA_FARMACEUTICA, historico.getForma_farmaceutica());
+        values.put(COLUNA_QUANTIDADE, historico.getQuantidade());
+        values.put(COLUNA_SUBCLASSE, historico.getSubclasse());
+        values.put(COLUNA_DATA_INICIAL, historico.getData_inicial());
+        values.put(COLUNA_DATA_FINAL, historico.getData_final());
+        values.put(COLUNA_INTERVALO, historico.getIntervalo());
 
-        db.update(TABELA_HISTORICO, values, COLUNA_ID_MED + " = ?", new String[]{String.valueOf(medicamento.getId_med())});
+        db.update(TABELA_HISTORICO, values, COLUNA_ID_HISTORICO + " = ?", new String[]{String.valueOf(historico.getId_historico())});
     }
 
-    public List<Medicamento> listaTodosMedicamentosHistorico() {
-        List<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
+    public List<Historico> listaTodosHistorico() {
+        List<Historico> listaMedicamentos = new ArrayList<Historico>();
 
-        String query = "SELECT * FROM " + TABELA_NOTIFICACAO;
+        String query = "SELECT * FROM " + TABELA_HISTORICO;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery(query, null);
 
         if (c.moveToFirst()) {
             do {
-                Medicamento medicamento = new Medicamento();
-                medicamento.setId_med(Integer.parseInt(c.getString(0)));
-                medicamento.setIndicacao(Integer.parseInt(c.getString(1)));
-                medicamento.setSubstancia(c.getString(2));
-                medicamento.setProduto(c.getString(3));
-                medicamento.setConcentracao(c.getString(4));
-                medicamento.setForma_farmaceutica(c.getString(5));
-                medicamento.setQuantidade(c.getString(6));
-                medicamento.setSubclasse(c.getString(7));
+                Historico historico = new Historico();
+                historico.setId_historico(Integer.parseInt(c.getString(0)));
+                historico.setId_medicamento(Integer.parseInt(c.getString(1)));
+                historico.setIndicacao(Integer.parseInt(c.getString(2)));
+                historico.setSubstancia(c.getString(3));
+                historico.setProduto(c.getString(4));
+                historico.setConcentracao(c.getString(5));
+                historico.setForma_farmaceutica(c.getString(6));
+                historico.setQuantidade(c.getString(7));
+                historico.setSubclasse(c.getString(8));
+                historico.setData_inicial(Long.parseLong(c.getString(9)));
+                historico.setData_final(Long.parseLong(c.getString(10)));
+                historico.setIntervalo(Integer.parseInt(c.getString(11)));
 
-                listaMedicamentos.add(medicamento);
+
+                listaMedicamentos.add(historico);
             } while (c.moveToNext());
         }
         return listaMedicamentos;
@@ -457,7 +477,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
     public void apagarUsuario(Usuario usuario) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete(TABELA_USUARIO, COLUNA_ID_NOTIFICACAO + " = ? ", new String[]{String.valueOf(usuario.getId())});
+        db.delete(TABELA_USUARIO, COLUNA_ID_USUARIO + " = ? ", new String[]{String.valueOf(usuario.getId())});
         db.close();
     }
 
