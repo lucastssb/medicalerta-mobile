@@ -17,6 +17,7 @@ import com.probex.medicalerta.adapter.Alarme;
 import com.probex.medicalerta.adapter.Medicamento;
 import com.probex.medicalerta.database.BancoDadosMed;
 import com.probex.medicalerta.model.Alarm;
+import com.probex.medicalerta.model.AppUtils;
 import com.probex.medicalerta.receiver.AlarmIntentReceiver;
 
 
@@ -39,7 +40,7 @@ public class AlarmSeekerService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
-     * @param name Used to name the worker thread, important only for debugging.
+     * name Used to name the worker thread, important only for debugging.
      */
     public AlarmSeekerService() {
         super("AlarmSeekerService");
@@ -75,24 +76,21 @@ public class AlarmSeekerService extends IntentService {
             }
 
             if(nextAlarm - timeInMillis <= 900000 && nextAlarm >= timeInMillis){
-                Timestamp timestamp = new Timestamp(nextAlarm);
-                Calendar calendar = GregorianCalendar.getInstance();
-                calendar.setTimeInMillis(timestamp.getTime());
-
-                Date AlarmDate = calendar.getTime();
-                SimpleDateFormat sdf3 = new SimpleDateFormat("HH:mm");
-                String alarmHour = sdf3.format(AlarmDate);
+                //Convert the time in milliseconds to a calendar instance
+                Calendar calendar = AppUtils.convertMillisToCalendar(nextAlarm);
 
                 System.out.println("Alarm set" + alarme.getId_med());
 
                 medicamento = bancoDadosMed.selecionarMedicamento(alarme.getId_med());
-                String medNome = medicamento.getProduto();
-                int idMed = alarme.getId_med();
 
-                startAlarm(calendar, medNome, idMed, alarmHour);
+                startAlarm(calendar, alarme.getId_alarme(), medicamento.getProduto());
+
+                //Alarme all = bancoDadosMed.selecionarAlarme(alarme.getId_alarme());
 
                 alarme.setUltimo_alarme(nextAlarm);
                 bancoDadosMed.atualizaAlarme(alarme);
+
+                bancoDadosMed.close();
             }
         }
 
@@ -105,13 +103,12 @@ public class AlarmSeekerService extends IntentService {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void startAlarm(Calendar c, String medNome, int idMed, String hora) {
+    private void startAlarm(Calendar calendar, int idAlarm, String medName) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intentAlm = new Intent(this, AlarmIntentReceiver.class);
-        intentAlm.putExtra("Nome", medNome);
-        intentAlm.putExtra("Id", idMed);
-        intentAlm.putExtra("Hora", hora);
+        intentAlm.putExtra("idAlarm", idAlarm);
+        intentAlm.putExtra("medName", medName);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intentAlm, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 }

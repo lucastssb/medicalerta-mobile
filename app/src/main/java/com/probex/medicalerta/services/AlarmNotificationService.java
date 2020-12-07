@@ -17,7 +17,9 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.probex.medicalerta.R;
 import com.probex.medicalerta.activity.AlarmActivity;
+import com.probex.medicalerta.model.Alarm;
 
+import java.io.Serializable;
 import java.util.Date;
 
 public class AlarmNotificationService extends IntentService {
@@ -27,7 +29,7 @@ public class AlarmNotificationService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
-     * @param name Used to name the worker thread, important only for debugging.
+     * name Used to name the worker thread, important only for debugging.
      */
     public AlarmNotificationService() {
         super("AlarmNotificationService");
@@ -35,31 +37,28 @@ public class AlarmNotificationService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-
-        if(intent.getExtras() != null) {
             Bundle data = intent.getExtras();
-            String medNome = data.getString("Nome");
-            int idMed = data.getInt("Id");
-            String hora = data.getString("Hora");
+            int idAlarm = data.getInt("idAlarm");
+            String medName = data.getString("medName");
+
+            System.out.println("idAlarm Alarm Notification service: " + idAlarm);
+            System.out.println("medName Alarm Notification service: " + medName);
 
             createNotificationChannel();
-            createNotification(medNome, idMed, hora);
-        }
+            createNotification(idAlarm, medName);
     }
 
-    private void createNotification(String medNome, int idMed, String hora) {
+    private void createNotification(int idAlarm, String medName) {
         Intent fullScreenIntent = new Intent(this, AlarmActivity.class);
-        fullScreenIntent.putExtra("Nome", medNome);
-        fullScreenIntent.putExtra("Id", idMed);
-        fullScreenIntent.putExtra("Hora", hora);
+        fullScreenIntent.putExtra("idAlarm", idAlarm);
         PendingIntent fullScreenPendingIntent = PendingIntent.getActivity(this, 0,
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.medicamento2)
+                .setSmallIcon(R.drawable.ic_medicalerta_contornos_brancos_10)
                 .setContentTitle("Hora do remédio")
-                .setContentText(medNome)
+                .setContentText(medName)
                 .setAutoCancel(true)
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)

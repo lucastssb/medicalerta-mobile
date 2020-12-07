@@ -7,14 +7,14 @@
     <color name="layoutAddToolbar">#0A712B</color>
     <color name="layoutAddBackgroud"> #0D9839</color>
 
-    <color name="layoutListarToolbar">#CA6826</color>
-    <color name="layoutListarBackgroud">#F07E30</color>
+    <color name="layoutListarToolbar">#734D85</color>
+    <color name="layoutListarBackgroud">#976BAB</color>
 
-    <color name="layoutAlarmeToolbar">#734D85</color>
-    <color name="layoutAlarmeBackgroud">#976BAB</color>
+    <color name="layoutAlarmeToolbar">#165B95</color>
+    <color name="layoutAlarmeBackgroud">#1D71B8</color>
 
-    <color name="layoutHistoricoToolbar">#165B95</color>
-    <color name="layoutHistoricoBackgroud">#1D71B8</color>
+    <color name="layoutHistoricoToolbar">#91141D</color>
+    <color name="layoutHistoricoBackgroud">#BE1622</color>
 
     <color name="btnGreen">#37B30E</color>
     <color name="btnRed">#FF0005</color>

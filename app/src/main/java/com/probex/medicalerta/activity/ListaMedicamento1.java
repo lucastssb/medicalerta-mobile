@@ -39,7 +39,7 @@ public class ListaMedicamento1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_medicamento1);
-        List<Medicamento> listaDeMedicamento = new ArrayList<>();
+        List<Medicamento> listaDeMedicamento;
 
         listaDeMedicamento = db.listaTodosMedicamentos();
         ExpandableListView elvCompra = (ExpandableListView) findViewById(R.id.elvCompra);
@@ -171,7 +171,6 @@ public class ListaMedicamento1 extends AppCompatActivity {
 
 
             array = caracter.split("!");
-
 
 
             String draw = "ic_pic" + array[1];

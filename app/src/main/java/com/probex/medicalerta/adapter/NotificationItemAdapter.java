@@ -1,5 +1,6 @@
 package com.probex.medicalerta.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.probex.medicalerta.R;
+import com.probex.medicalerta.database.BancoDadosMed;
+
+import java.util.List;
 
 public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationItemAdapter.MyViewHolder> {
-    @NonNull
+    private List<Notificacao> notificacoes;
+    private BancoDadosMed bancoDadosMed;
+    private Context context;
+
+    public NotificationItemAdapter(List<Notificacao> notificacoes, Context context) {
+        this.notificacoes = notificacoes;
+        this.context = context;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemList = LayoutInflater.from(parent.getContext())
@@ -22,13 +34,23 @@ public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationIt
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.notification_title.setText("Diazepam");
-        holder.notification_description.setText("Você esqueceu de tomar esse remédio as 10:00");
+        final Notificacao notificacao = notificacoes.get(position);
+        holder.notification_title.setText(notificacao.getNome());
+        holder.notification_description.setText(notificacao.getDescricao());
+        holder.delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bancoDadosMed = new BancoDadosMed(context);
+                bancoDadosMed.apagarNotificacao(notificacao);
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        int amount = notificacoes.size();
+        return amount;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -41,5 +63,8 @@ public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationIt
             notification_description = itemView.findViewById(R.id.notification_description);
             delete_button = itemView.findViewById(R.id.delete_notification_button);
         }
+    }
+    private void deleteNotification() {
+
     }
 }

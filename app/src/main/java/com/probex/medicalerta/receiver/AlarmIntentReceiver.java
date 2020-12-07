@@ -6,10 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.probex.medicalerta.model.Alarm;
 import com.probex.medicalerta.services.AlarmNotificationService;
-import com.probex.medicalerta.services.AlarmSeekerService;
-
-import java.util.Date;
 
 public class AlarmIntentReceiver extends BroadcastReceiver {
 
@@ -18,14 +16,15 @@ public class AlarmIntentReceiver extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
         Bundle data = intent.getExtras();
-        String medNome = data.getString("Nome");
-        int idMed = data.getInt("Id");
-        String hora = data.getString("Hora");
+        int idAlarm = data.getInt("idAlarm");
+        String medName = data.getString("medName");
+
+        System.out.println("idAlarm receiver: " + idAlarm);
+        System.out.println("medName receiver: " + medName);
 
         Intent service = new Intent(context, AlarmNotificationService.class);
-        service.putExtra("Nome", medNome);
-        service.putExtra("Id", idMed);
-        service.putExtra("Hora", hora);
+        service.putExtra("idAlarm", idAlarm);
+        service.putExtra("medName", medName);
         context.startService(service);
         Log.v("Tag", "Alarm intent receiver called.");
     }

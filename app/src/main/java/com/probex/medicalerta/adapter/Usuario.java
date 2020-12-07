@@ -5,19 +5,19 @@ public class Usuario {
 
     private int id;
     private String nome;
-    private int idade;
+    private long dataNascimento;
     private String foto;
 
-    public Usuario(int id, String nome, int idade, String foto) {
+    public Usuario(int id, String nome, long dataNascimento, String foto) {
         this.id = id;
         this.nome = nome;
-        this.idade = idade;
+        this.dataNascimento = dataNascimento;
         this.foto = foto;
     }
 
-    public Usuario(String nome, int idade, String foto) {
+    public Usuario(String nome, long dataNascimento, String foto) {
         this.nome = nome;
-        this.idade = idade;
+        this.dataNascimento = dataNascimento;
         this.foto = foto;
     }
 
@@ -41,12 +41,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public int getIdade() {
-        return idade;
+    public long getDataNascimento() {
+        return dataNascimento;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setDataNascimento(long dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getFoto() {

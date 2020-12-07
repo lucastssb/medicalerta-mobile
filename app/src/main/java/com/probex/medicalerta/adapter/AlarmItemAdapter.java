@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.probex.medicalerta.R;
 import com.probex.medicalerta.model.Alarm;
+import com.probex.medicalerta.model.AppUtils;
 
 import java.util.List;
 
@@ -33,9 +34,9 @@ public class AlarmItemAdapter extends RecyclerView.Adapter<AlarmItemAdapter.MyVi
         Alarm alarm = alarms.get(position);
         holder.name.setText(alarm.getMedName());
         holder.interval.setText(Integer.toString(alarm.getInterval()) + " vezes ao dia");
-        holder.nextAlarm.setText("Próximo alarme: " + alarm.getNextAlarmTime());
-        holder.finDate.setText("Término: " + alarm.getFinalDate());
-        holder.initDate.setText("Início: " + alarm.getInitialDate());
+        holder.nextAlarm.setText("Próximo alarme: " + AppUtils.getHourFromCalendar(AppUtils.convertMillisToCalendar(alarm.getLastAlarmTime())));
+        holder.finDate.setText("Término: " + AppUtils.getDateFromCalendar(AppUtils.convertMillisToCalendar(alarm.getFinalDate())));
+        holder.initDate.setText("Início: " + AppUtils.getDateFromCalendar(AppUtils.convertMillisToCalendar(alarm.getInitialDate())));
 
     }
 

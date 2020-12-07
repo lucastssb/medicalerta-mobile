@@ -46,7 +46,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
     private static final String TABELA_USUARIO = "tb_usuario";
     private static final String COLUNA_ID_USUARIO = "id_usuario";
     private static final String COLUNA_NOME_USUARIO = "nome_usuario";
-    private static final String COLUNA_IDADE_USUARIO = "idade_usuario";
+    private static final String COLUNA_DATA_NASCIMENTO_USUARIO = "data_nascimento_usuario";
     private static final String COLUNA_FOTO_USUARIO = "foto_usuario_";
 
     //Tabela Notificações
@@ -90,7 +90,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         QUERY_COLUNA = " CREATE TABLE " + TABELA_USUARIO + " ( "
                 + COLUNA_ID_USUARIO + "  INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COLUNA_NOME_USUARIO + " VARCHAR,"
-                + COLUNA_IDADE_USUARIO + " INTEGER,"
+                + COLUNA_DATA_NASCIMENTO_USUARIO + " INTEGER,"
                 + COLUNA_FOTO_USUARIO + " VARCHAR)";
         db.execSQL(QUERY_COLUNA);
 
@@ -380,7 +380,6 @@ public class BancoDadosMed extends SQLiteOpenHelper {
                 historico.setData_final(Long.parseLong(c.getString(10)));
                 historico.setIntervalo(Integer.parseInt(c.getString(11)));
 
-
                 listaMedicamentos.add(historico);
             } while (c.moveToNext());
         }
@@ -466,7 +465,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(COLUNA_NOME_USUARIO, usuario.getNome());
-        values.put(COLUNA_IDADE_USUARIO, usuario.getIdade());
+        values.put(COLUNA_DATA_NASCIMENTO_USUARIO, usuario.getDataNascimento());
         values.put(COLUNA_FOTO_USUARIO, usuario.getFoto());
 
 
@@ -484,7 +483,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
     public Usuario selecionarUsuario(int id_usuario) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABELA_USUARIO, new String[]{COLUNA_ID_USUARIO, COLUNA_NOME_USUARIO, COLUNA_IDADE_USUARIO, COLUNA_FOTO_USUARIO}, COLUNA_ID_USUARIO +
+        Cursor cursor = db.query(TABELA_USUARIO, new String[]{COLUNA_ID_USUARIO, COLUNA_NOME_USUARIO, COLUNA_DATA_NASCIMENTO_USUARIO, COLUNA_FOTO_USUARIO}, COLUNA_ID_USUARIO +
                 " = ? ", new String[]{String.valueOf(id_usuario)}, null, null, null);
 
         if (cursor != null) {
@@ -504,7 +503,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
 
         values.put(COLUNA_ID_USUARIO, usuario.getId());
         values.put(COLUNA_NOME_USUARIO, usuario.getNome());
-        values.put(COLUNA_IDADE_USUARIO, usuario.getIdade());
+        values.put(COLUNA_DATA_NASCIMENTO_USUARIO, usuario.getDataNascimento());
         values.put(COLUNA_FOTO_USUARIO, usuario.getFoto());
 
         db.update(TABELA_USUARIO, values, COLUNA_ID_USUARIO + " = ?", new String[]{String.valueOf(usuario.getId())});
@@ -523,7 +522,7 @@ public class BancoDadosMed extends SQLiteOpenHelper {
                 Usuario usuario = new Usuario();
                 usuario.setId(Integer.parseInt(c.getString(0)));
                 usuario.setNome(c.getString(1));
-                usuario.setIdade(Integer.parseInt(c.getString(2)));
+                usuario.setDataNascimento(Long.parseLong(c.getString(2)));
                 usuario.setFoto(c.getString(3));
                 listaUsuarios.add(usuario);
             } while (c.moveToNext());

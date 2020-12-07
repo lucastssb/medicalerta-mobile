@@ -19,6 +19,8 @@ public class Produto {
         this.qtdDias = qtdDias;
         this.valorQtdDias = valorQtdDias;
         this.dataInicial = dataInicial;
+
+
         this.valorDataInicial = valorDataInicial;
         this.dataFinal = dataFinal;
         this.valorDataFinal = valorDataFinal;
