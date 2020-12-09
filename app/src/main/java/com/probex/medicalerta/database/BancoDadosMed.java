@@ -233,11 +233,28 @@ public class BancoDadosMed extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Alarme selecionarAlarme(int id_alarme) {
+    public Alarme selecionarAlarme(int id_medicamento) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABELA_ALARME, new String[]{COLUNA_ID_ALARME, COLUNA_ID_MEDE, COLUNA_DATA_INICIAL,
                 COLUNA_DATA_FINAL, COLUNA_ULTIMO_ALARME, COLUNA_INTERVALO}, COLUNA_ID_MEDE +
+                " = ? ", new String[]{String.valueOf(id_medicamento)}, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        Alarme alarme = new Alarme(Integer.parseInt(cursor.getString(0)),
+                Integer.parseInt(cursor.getString(1)), Long.parseLong(cursor.getString(2)), Long.parseLong(cursor.getString(3)), Long.parseLong(cursor.getString(4)), Integer.parseInt(cursor.getString(5)));
+
+        return alarme;
+    }
+
+    public Alarme selecionarAlarmeIdAlarme(int id_alarme) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABELA_ALARME, new String[]{COLUNA_ID_ALARME, COLUNA_ID_MEDE, COLUNA_DATA_INICIAL,
+                COLUNA_DATA_FINAL, COLUNA_ULTIMO_ALARME, COLUNA_INTERVALO}, COLUNA_ID_ALARME +
                 " = ? ", new String[]{String.valueOf(id_alarme)}, null, null, null);
 
         if (cursor != null) {
