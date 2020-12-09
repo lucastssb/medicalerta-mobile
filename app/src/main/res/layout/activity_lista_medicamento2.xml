@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#976BAB"
+    android:background="@color/layoutListarBackgroud"
     android:onClick="click"
     tools:context=".activity.ListaMedicamento2">
 
@@ -18,7 +18,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#513A5C"
+            android:background="@color/layoutListarToolbar"
             app:title=""
             app:titleTextColor="@android:color/white"
             tools:ignore="MissingConstraints">
@@ -178,9 +178,10 @@
         app:layout_constraintTop_toBottomOf="@id/hora_inicio" />
 
     <Button
+        android:theme="@style/BtnRed"
         android:id="@+id/red_btn"
         android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttonred"
         android:onClick="voltar"
         android:text="CANCELAR"
@@ -193,9 +194,10 @@
         app:layout_constraintTop_toBottomOf="@id/tv_timer1" />
 
     <Button
+        android:theme="@style/BtnGreen"
         android:id="@+id/continuar"
         android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttongreen"
         android:onClick="confirmar"
         android:text="CONFIRMAR"
@@ -208,9 +210,10 @@
         app:layout_constraintTop_toBottomOf="@id/tv_timer1" />
 
     <Button
+        android:theme="@style/BtnRed"
         android:id="@+id/excluir"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:background="@color/btnRed"
         android:onClick="excluir"
         android:text="Excluir"

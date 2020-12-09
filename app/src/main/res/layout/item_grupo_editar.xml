@@ -100,6 +100,7 @@
     </TableRow>
 
     <Button
+        android:theme="@style/BtnRed"
         android:id="@+id/tvedit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -63,6 +63,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:theme="@style/BtnGreen"
         android:id="@+id/green_btn"
         android:layout_width="238dp"
         android:layout_height="45dp"

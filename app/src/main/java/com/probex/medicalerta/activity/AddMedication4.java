@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +51,14 @@ public class AddMedication4 extends AppCompatActivity {
         concentracao = (TextView) findViewById(R.id.concentracao);
         intervalo = (TextView) findViewById(R.id.intervalo);
         qtdDias = (TextView) findViewById(R.id.qtdDias);
+
+        //Set FOTO
+        String nomeFoto = "ic_pic" + String.valueOf(med.getIndicacao());
+        int drawableIds = getResources().getIdentifier(nomeFoto, "drawable", getPackageName());
+        Drawable merDrawable = getResources().getDrawable(drawableIds);
+
+        ImageView pictograma = (ImageView) findViewById(R.id.ic_medicamento);
+        pictograma.setImageDrawable(merDrawable);
 
 
         //Contar quantidade de dias

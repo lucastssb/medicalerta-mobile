@@ -183,7 +183,7 @@
     <Button
         android:id="@+id/green_btn"
         android:layout_width="238dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/buttongreen"
@@ -191,6 +191,7 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:theme="@style/BtnGreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

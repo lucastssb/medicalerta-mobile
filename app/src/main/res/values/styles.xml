@@ -12,4 +12,17 @@
         <item name="android:background">?android:attr/listDivider</item>
     </style>
 
+    <style name="BtnGreen">
+
+        <item name="colorPrimary">#37B30E</item>
+        <item name="colorPrimaryDark">#37B30E</item>
+        <item name="colorAccent">#FFF</item>
+    </style>
+
+    <style name="BtnRed">
+        <item name="colorPrimary">#FF0005</item>
+        <item name="colorPrimaryDark">#FF0005</item>
+        <item name="colorAccent">#FFF</item>
+    </style>
+
 </resources>

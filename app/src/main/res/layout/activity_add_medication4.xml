@@ -59,10 +59,10 @@
 
         <ImageView
             android:id="@+id/ic_medicamento"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/medicamento"
+            android:src="@drawable/ic_pic2"
             app:layout_constraintBottom_toTopOf="@+id/linha_produto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
             android:id="@+id/produto_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:text="Produto:"
@@ -86,7 +86,7 @@
             android:id="@+id/produto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
             android:text="NEOPIRIDIN"
@@ -114,7 +114,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/medicamento2"
+            android:src="@drawable/ic_concentracao"
             app:layout_constraintBottom_toTopOf="@+id/linha_concentracao"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linha_produto" />
@@ -167,7 +167,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/relogio"
+            android:src="@drawable/ic_intervalo"
             app:layout_constraintBottom_toTopOf="@+id/linha_intervalo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linha_concentracao" />
@@ -219,7 +219,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/calendario"
+            android:src="@drawable/ic_dias"
             app:layout_constraintBottom_toTopOf="@+id/linha_qtdDias"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linha_intervalo" />
@@ -270,9 +270,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:theme="@style/BtnRed"
         android:id="@+id/red_btn"
         android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttonred"
         android:onClick="onBackPressed"
         android:text="CANCELAR"
@@ -285,9 +286,10 @@
         app:layout_constraintTop_toBottomOf="@id/constLay2" />
 
     <Button
+        android:theme="@style/BtnGreen"
         android:id="@+id/green_btn"
         android:layout_width="180dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:background="@drawable/buttongreen"
         android:onClick="continuar"
         android:text="CONTINUAR"
