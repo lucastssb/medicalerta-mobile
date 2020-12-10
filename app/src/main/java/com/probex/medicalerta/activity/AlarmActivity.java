@@ -3,7 +3,9 @@ package com.probex.medicalerta.activity;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -23,20 +25,21 @@ import com.probex.medicalerta.model.Alarm;
 import com.probex.medicalerta.model.AppUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class AlarmActivity extends AppCompatActivity {
     private TextView textName, textHour, userNameAlarm;
-    private ImageView userPicAlarm;
+    private ImageView userPicAlarm, alarmPictogram;
 
-    private Alarm alarm;
     private String hour;
     private BancoDadosMed bancoDadosMed;
     private List<Alarme> alarmes;
     private Alarme alm;
     private Medicamento medicamento;
     private List<Usuario> usuarios;
+    List<Historico> historicos;
 
     @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     @Override
@@ -50,6 +53,7 @@ public class AlarmActivity extends AppCompatActivity {
         textName = findViewById(R.id.nameMed);
         userPicAlarm = findViewById(R.id.userPicAlarm);
         userNameAlarm = findViewById(R.id.userNameAlarm);
+        alarmPictogram = findViewById(R.id.alarmPictogram);
 
         bancoDadosMed = new BancoDadosMed(this);
 
@@ -90,25 +94,44 @@ public class AlarmActivity extends AppCompatActivity {
             }
         }
         medicamento = bancoDadosMed.selecionarMedicamento(alm.getId_med());
+        historicos = bancoDadosMed.listaTodosHistorico();
+
+        String draw = "ic_pic" + medicamento.getIndicacao();
 
         hour = AppUtils.getHourFromCalendar(AppUtils.convertMillisToCalendar(alm.getUltimo_alarme()));
         textName.setText(medicamento.getProduto());
         textHour.setText(hour);
+        alarmPictogram.setImageDrawable(getDrawable(this, draw));
+    }
+
+    public static Drawable getDrawable(Context c, String ImageName) {
+        return c.getResources().getDrawable(c.getResources().getIdentifier(ImageName, "drawable", c.getPackageName()));
     }
 
     public void tookIt(View view) {
-        bancoDadosMed.addHistorico(new Historico(medicamento.getId_med(),
-                medicamento.getIndicacao(),
-                medicamento.getSubstancia(),
-                medicamento.getProduto(),
-                medicamento.getConcentracao(),
-                medicamento.getForma_farmaceutica(),
-                medicamento.getQuantidade(),
-                medicamento.getSubclasse(),
-                alm.getData_inicial(),
-                alm.getData_final(),
-                alm.getIntervalo()
-        ));
+        boolean isAlreadyInHistory = false;
+        for (Historico historico : historicos
+        ) {
+            if (historico.getId_medicamento() == medicamento.getId_med()) {
+               isAlreadyInHistory = true;
+            }
+        }
+
+        if(!isAlreadyInHistory) {
+            bancoDadosMed.addHistorico(new Historico(medicamento.getId_med(),
+                    medicamento.getIndicacao(),
+                    medicamento.getSubstancia(),
+                    medicamento.getProduto(),
+                    medicamento.getConcentracao(),
+                    medicamento.getForma_farmaceutica(),
+                    medicamento.getQuantidade(),
+                    medicamento.getSubclasse(),
+                    alm.getData_inicial(),
+                    alm.getData_final(),
+                    alm.getIntervalo()
+            ));
+        }
+
         bancoDadosMed.close();
         finish();
     }

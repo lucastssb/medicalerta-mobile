@@ -108,7 +108,7 @@ public class AlarmSeekerService extends IntentService {
         Intent intentAlm = new Intent(this, AlarmIntentReceiver.class);
         intentAlm.putExtra("idAlarm", idAlarm);
         intentAlm.putExtra("medName", medName);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intentAlm, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, idAlarm, intentAlm, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
 }

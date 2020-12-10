@@ -21,6 +21,7 @@ import com.probex.medicalerta.model.Alarm;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Random;
 
 public class AlarmNotificationService extends IntentService {
 
@@ -68,8 +69,10 @@ public class AlarmNotificationService extends IntentService {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
+        //Random random = new Random();
+
         // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(5534, builder.build());
+        notificationManager.notify(idAlarm, builder.build());
     }
 
     @Override

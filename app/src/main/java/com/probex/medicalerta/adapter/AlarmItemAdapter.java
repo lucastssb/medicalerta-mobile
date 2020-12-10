@@ -35,9 +35,12 @@ public class AlarmItemAdapter extends RecyclerView.Adapter<AlarmItemAdapter.MyVi
         holder.name.setText(alarm.getMedName());
         holder.interval.setText(Integer.toString(alarm.getInterval()) + " vezes ao dia");
         holder.nextAlarm.setText("Próximo alarme: " + AppUtils.getHourFromCalendar(AppUtils.convertMillisToCalendar(alarm.getLastAlarmTime())));
-        holder.finDate.setText("Término: " + AppUtils.getDateFromCalendar(AppUtils.convertMillisToCalendar(alarm.getFinalDate())));
         holder.initDate.setText("Início: " + AppUtils.getDateFromCalendar(AppUtils.convertMillisToCalendar(alarm.getInitialDate())));
-
+        if (alarm.getFinalDate() == 0) {
+            holder.finDate.setText("Término: Indeterminado");
+        } else {
+            holder.finDate.setText("Término: " + AppUtils.getDateFromCalendar(AppUtils.convertMillisToCalendar(alarm.getFinalDate())));
+        }
     }
 
 

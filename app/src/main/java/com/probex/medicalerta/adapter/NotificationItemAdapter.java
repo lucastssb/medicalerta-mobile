@@ -11,18 +11,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.probex.medicalerta.R;
+import com.probex.medicalerta.activity.NotificationsActivity;
 import com.probex.medicalerta.database.BancoDadosMed;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationItemAdapter.MyViewHolder> {
     private List<Notificacao> notificacoes;
     private BancoDadosMed bancoDadosMed;
     private Context context;
+    Callable<Void> callable;
 
-    public NotificationItemAdapter(List<Notificacao> notificacoes, Context context) {
+    public NotificationItemAdapter(List<Notificacao> notificacoes, Context context, Callable<Void> callable) {
         this.notificacoes = notificacoes;
         this.context = context;
+        this.callable = callable;
     }
 
     @Override
@@ -33,7 +37,7 @@ public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationIt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final Notificacao notificacao = notificacoes.get(position);
         holder.notification_title.setText(notificacao.getNome());
         holder.notification_description.setText(notificacao.getDescricao());
@@ -42,7 +46,12 @@ public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationIt
             public void onClick(View v) {
                 bancoDadosMed = new BancoDadosMed(context);
                 bancoDadosMed.apagarNotificacao(notificacao);
-
+                bancoDadosMed.close();
+                try {
+                    callable.call();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -64,7 +73,5 @@ public class NotificationItemAdapter extends RecyclerView.Adapter<NotificationIt
             delete_button = itemView.findViewById(R.id.delete_notification_button);
         }
     }
-    private void deleteNotification() {
 
-    }
 }

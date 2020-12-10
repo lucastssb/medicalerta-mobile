@@ -82,8 +82,7 @@
         android:id="@+id/view6"
         android:layout_width="350dp"
         android:layout_height="350dp"
-        android:background="#007359AA"
-        android:foreground="@drawable/alarm_box_rounded"
+        android:background="@drawable/alarm_box_rounded"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +100,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/view6"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
+        app:layout_constraintTop_toBottomOf="@+id/alarmPictogram" />
 
     <TextView
         android:id="@+id/userNameAlarm"
@@ -129,5 +128,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/userNameAlarm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/userNameAlarm" />
+
+    <ImageView
+        android:id="@+id/alarmPictogram"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/pictogram_rounded_box"
+        app:layout_constraintEnd_toEndOf="@+id/nameMed"
+        app:layout_constraintTop_toTopOf="@+id/view6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

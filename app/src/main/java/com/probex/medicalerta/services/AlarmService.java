@@ -43,6 +43,7 @@ public class AlarmService extends IntentService {
     public void onDestroy() {
         System.out.println("Alarm service destroyed");
         super.onDestroy();
+        sendBroadcast(new Intent("RestartService"));
     }
 
 }
