@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -35,6 +36,7 @@ public class CreateUserActivity extends AppCompatActivity {
     private Button materialTextInputPicker, createUserButton;
     private ImageView profilePicView;
     private TextInputLayout userNameTextInput;
+    private TextView warnEmptyName;
 
     private BancoDadosMed bancoDadosMed;
 
@@ -49,7 +51,7 @@ public class CreateUserActivity extends AppCompatActivity {
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
     };
-    private static final int SELECTION_CAMERA  = 100;
+    private static final int SELECTION_CAMERA = 100;
     private static final int SELECTION_GALLERY = 200;
 
 
@@ -62,20 +64,21 @@ public class CreateUserActivity extends AppCompatActivity {
 
         bancoDadosMed = new BancoDadosMed(this);
 
-        Permission.validatePermissions(necessaryPermissions, this,1);
+        Permission.validatePermissions(necessaryPermissions, this, 1);
 
         profilePicView = findViewById(R.id.profilePicView);
         userNameTextInput = findViewById(R.id.userNameTextInput);
         materialTextInputPicker = findViewById(R.id.userDatePicker);
         createUserButton = findViewById(R.id.createUserButton);
+        warnEmptyName = findViewById(R.id.warnEmptyName);
 
         profilePicView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                if ( i.resolveActivity(getPackageManager()) != null ){
-                    startActivityForResult(i, SELECTION_GALLERY );
+                if (i.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(i, SELECTION_GALLERY);
                 }
 
             }
@@ -83,16 +86,27 @@ public class CreateUserActivity extends AppCompatActivity {
 
         userNameTextInput.getEditText().addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+
+            }
 
             public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {}
+                                          int count, int after) {
+            }
 
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
 
                 userName = s.toString();
                 //get the String from CharSequence with s.toString() and process it to validation
+
+                if (userName != null) {
+                    createUserButton.setEnabled(true);
+                }
+
+                if (userName.length() != 0) {
+                    warnEmptyName.setVisibility(View.INVISIBLE);
+                }
 
             }
         });
@@ -123,20 +137,27 @@ public class CreateUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String imageName = "myImage.jpeg";
-                if(image != null) {
-                    new ImageSaver(context).
-                            setFileName(imageName).
-                            setDirectoryName("images").
-                            save(image);
+
+                if (userName.length() == 0 || userName == null) {
+                    warnEmptyName.setVisibility(View.VISIBLE);
                 } else {
-                    imageName = "0";
+                    if (image != null) {
+                        new ImageSaver(context).
+                                setFileName(imageName).
+                                setDirectoryName("images").
+                                save(image);
+                    } else {
+                        imageName = "0";
+                    }
+
+                    bancoDadosMed.addUsuario(new Usuario(userName, selectedDate, imageName));
+                    bancoDadosMed.close();
+
+                    startActivity(new Intent(context, MainActivity.class));
                 }
 
-                bancoDadosMed.addUsuario(new Usuario(userName, selectedDate, imageName));
-                bancoDadosMed.close();
-
-                startActivity(new Intent(context, MainActivity.class));
             }
+
         });
 
     }
@@ -145,26 +166,26 @@ public class CreateUserActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if ( resultCode == RESULT_OK ){
+        if (resultCode == RESULT_OK) {
 
             try {
-                switch ( requestCode ){
+                switch (requestCode) {
                     case SELECTION_CAMERA:
                         image = (Bitmap) data.getExtras().get("data");
                         break;
                     case SELECTION_GALLERY:
                         Uri storedImagePath = data.getData();
-                        image = MediaStore.Images.Media.getBitmap(getContentResolver(), storedImagePath );
+                        image = MediaStore.Images.Media.getBitmap(getContentResolver(), storedImagePath);
                         break;
                 }
 
-                if ( image != null ){
+                if (image != null) {
 
                     profilePicView.setImageBitmap(image);
 
                 }
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -176,17 +197,17 @@ public class CreateUserActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        for ( int permissionResult : grantResults ){
-            if ( permissionResult == PackageManager.PERMISSION_DENIED ){
+        for (int permissionResult : grantResults) {
+            if (permissionResult == PackageManager.PERMISSION_DENIED) {
                 validatePermissionAlert();
             }
         }
 
     }
 
-    private void validatePermissionAlert(){
+    private void validatePermissionAlert() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Permissões Negadas");
         builder.setMessage("Para utilizar o app é necessário aceitar as permissões");
         builder.setCancelable(false);
